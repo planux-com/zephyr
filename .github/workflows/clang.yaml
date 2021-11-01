@@ -1,17 +1,17 @@
 name: Build with Clang/LLVM
 
-on: pull_request_target
+on: push
 
 jobs:
   clang-build-cancel:
-    runs-on: ubuntu-latest
+    runs-on: zephyr_runner
     steps:
       - name: Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.6.0
         with:
           access_token: ${{ github.token }}
   clang-build:
-    runs-on: ubuntu-latest
+    runs-on: zephyr_runner
     needs: clang-build-cancel
     container:
       image: zephyrprojectrtos/ci:v0.18.4
